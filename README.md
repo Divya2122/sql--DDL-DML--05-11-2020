@@ -1,2 +1,2 @@
-# sql-DDL--05-11-2020
+# sql-DDL,DML-05-11-2020
 DDL commands
