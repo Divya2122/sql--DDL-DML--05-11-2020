@@ -1,0 +1,276 @@
+
+
+
+
+DDL
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| babu               |
+| demo               |
+| divya              |
+| employeedb         |
+| goblog             |
+| happy              |
+| information_schema |
+| myclass            |
+| mysql              |
+| performance_schema |
+| reddy              |
+| sakila             |
+| sample             |
+| sheet              |
+| sys                |
+| test1              |
+| test_db            |
+| tutorials          |
+| world              |
++--------------------+
+19 rows in set (0.00 sec)
+
+mysql> use myclass;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_myclass |
++-------------------+
+| department        |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> DESCRIDE myclass;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DESCRIDE myclass' at line 1
+mysql> describe myclass_tables;
+ERROR 1146 (42S02): Table 'myclass.myclass_tables' doesn't exist
+mysql> create table student(sno int,sname varchar(20),age int,dob date);
+Query OK, 0 rows affected (0.32 sec)
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| sno   | int         | YES  |     | NULL    |       |
+| sname | varchar(20) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
+| dob   | date        | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student values(1,'divya','22',curdate());
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into student values(1,'divya','22' curdate());
++------+-------+------+------------+
+| sno  | sname | age  | dob        |
++------+-------+------+------------+
+|    1 | divya |   22 | 2020-11-07 |
++------+-------+------+------------+
+1 row in set (0.01 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (1.24 sec)
+
+
+
+
+
+
+
+
+
+
+
+DML
+
+mysql: [Warning] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe: ignoring option '--no-beep' due to invalid value ''.
+Enter password: **********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 31
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use myclass;
+Database changed
+mysql> select database();
++------------+
+| database() |
++------------+
+| myclass    |
++------------+
+1 row in set (0.00 sec)
+
+mysql> create table student(sno int,sname varchar(20),age int,dob date);
+Query OK, 0 rows affected (0.52 sec)
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| sno   | int         | YES  |     | NULL    |       |
+| sname | varchar(20) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
+| dob   | date        | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into student values(1,'divya','22',curdate());
+Query OK, 1 row affected (1.01 sec)
+
+mysql> select * from student;
++------+-------+------+------------+
+| sno  | sname | age  | dob        |
++------+-------+------+------------+
+|    1 | divya |   22 | 2020-11-07 |
++------+-------+------+------------+
+1 row in set (0.00 sec)
+
+mysql> alter table student add marks int;
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| sno   | int         | YES  |     | NULL    |       |
+| sname | varchar(20) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
+| dob   | date        | YES  |     | NULL    |       |
+| marks | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> alter table student drop dob;
+Query OK, 0 rows affected (0.43 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| sno   | int         | YES  |     | NULL    |       |
+| sname | varchar(20) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
+| marks | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table student add subject int;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| sno     | int         | YES  |     | NULL    |       |
+| sname   | varchar(20) | YES  |     | NULL    |       |
+| age     | int         | YES  |     | NULL    |       |
+| marks   | int         | YES  |     | NULL    |       |
+| subject | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into student value(2,'vidya','21','99','maths');
+ERROR 1366 (HY000): Incorrect integer value: 'maths' for column 'subject' at row 1
+mysql> insert into student value(2,'vidya',21,89,'maths');
+ERROR 1366 (HY000): Incorrect integer value: 'maths' for column 'subject' at row 1
+mysql> insert into student values(1,'vidya','21', 99 ,curdate());
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student;
++------+-------+------+-------+----------+
+| sno  | sname | age  | marks | subject  |
++------+-------+------+-------+----------+
+|    1 | divya |   22 |  NULL |     NULL |
+|    1 | vidya |   21 |    99 | 20201107 |
++------+-------+------+-------+----------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student modify subject varchar(100);
+Query OK, 2 rows affected (1.24 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| sno     | int          | YES  |     | NULL    |       |
+| sname   | varchar(20)  | YES  |     | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| marks   | int          | YES  |     | NULL    |       |
+| subject | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into student value(3,'midhun',20,89,'maths');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from student;
++------+--------+------+-------+----------+
+| sno  | sname  | age  | marks | subject  |
++------+--------+------+-------+----------+
+|    1 | divya  |   22 |  NULL | NULL     |
+|    1 | vidya  |   21 |    99 | 20201107 |
+|    3 | midhun |   20 |    89 | maths    |
++------+--------+------+-------+----------+
+3 rows in set (0.00 sec)
+
+mysql> alter table student modify subject varchar(100) not null default 'history';
+ERROR 1138 (22004): Invalid use of NULL value
+mysql>  alter table student modify subject varchar(100) not null default 'history';
+ERROR 1138 (22004): Invalid use of NULL value
+mysql> alter table student modify subject varchar(100) not null default 'history';
+ERROR 1138 (22004): Invalid use of NULL value
+mysql> alter table student modify subject varchar(100) not null default 'history';
+ERROR 1138 (22004): Invalid use of NULL value
+mysql>
+
+
+
+
+
+
+
+mysql> ude myclass;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ude myclass' at line 1
+mysql> use myclass;
+Database changed
+mysql> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| sno     | int          | YES  |     | NULL    |       |
+| sname   | varchar(20)  | YES  |     | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| marks   | int          | YES  |     | NULL    |       |
+| subject | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into student (sid,sname,age,subject) values(1,'divya',21,'java');
+ERROR 1054 (42S22): Unknown column 'sid' in 'field list'
+mysql> insert into student(sid,sname,age,subject) values(1,'divya',21,'java');
+ERROR 1054 (42S22): Unknown column 'sid' in 'field list'
+mysql> insert into student values(1,'vidya','21', 99 ,curdate());
+Query OK, 1 row affected (0.31 sec)
+
+mysql> select * from student;
++------+--------+------+-------+------------+
+| sno  | sname  | age  | marks | subject    |
++------+--------+------+-------+------------+
+|    1 | divya  |   22 |  NULL | NULL       |
+|    1 | vidya  |   21 |    99 | 20201107   |
+|    3 | midhun |   20 |    89 | maths      |
+|    1 | vidya  |   21 |    99 | 2020-11-07 |
++------+--------+------+-------+------------+
+4 rows in set (0.00 sec)
+
